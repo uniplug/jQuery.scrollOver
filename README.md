@@ -24,25 +24,25 @@ Each time the window scroll position reach a defined positions, the events will 
 
 3 kind of events are triggered :
 
-* ``scrollover.down``  
+* ``scrollover:down``  
   When the scroll position enter move down through the scroll position.
-* ``scrollover.up``  
+* ``scrollover:up``  
   When the scroll position enter move up through the scroll position.
-* ``scrollover.over``  
+* ``scrollover:over``  
   Each time you scroll over the scroll position.
 
 You can use those events as usual :
 
 ```javascript
-$(window).on("scrollover.down", function(event) {
+$(window).on("scrollover:down", function(event) {
     console.log('scrolled over down', event.id);
 });
 
-$(window).on("scrollover.up", function(event) {
+$(window).on("scrollover:up", function(event) {
     console.log('scrolled over up', event.id);
 });
 
-$(window).on("scrollover.over", function(event) {
+$(window).on("scrollover:over", function(event) {
     if ( event.up ) {
         console.log('scrolled over up', event.id);
     } else if ( event.down ) {
@@ -63,6 +63,7 @@ $.scrollOver({
     offset: 0,
     id: false,
     debug: false,
+    wait_for_tick: false
 });
 ```
 
@@ -71,6 +72,7 @@ $.scrollOver({
 * offset - position of trigger from the top of the page
 * id - id of event
 * debug - debug mode
+* wait_for_tick - wait for the first tick
 
 Download
 --------

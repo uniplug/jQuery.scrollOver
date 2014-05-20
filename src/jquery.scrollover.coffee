@@ -8,6 +8,7 @@ $.fn.extend
       offset: 0
       id: false
       debug: false
+      wait_for_tick: false
 
     settings = $.extend settings, options
 
@@ -31,6 +32,7 @@ $.fn.extend
 
     isOver = ->
       scroll = getCurrentScroll()
+      log scroll
       scroll > settings.offset
 
     getScrollFunction = ->
@@ -40,18 +42,18 @@ $.fn.extend
         log "new " + nowOverLoc
         if not wasOver and nowOverLoc
           log "scroll down"
-          triggerEvent "scrollover.down",
+          triggerEvent "scrollover:down",
             id: settings.id
-          triggerEvent "scrollover.over",
+          triggerEvent "scrollover:over",
             id: settings.id
             up: false
             down: true
 
         if wasOver and not nowOverLoc
           log "scroll up"
-          triggerEvent "scrollover.up",
+          triggerEvent "scrollover:up",
             id: settings.id
-          triggerEvent "scrollover.over",
+          triggerEvent "scrollover:over",
             id: settings.id
             up: true
             down: false
@@ -65,7 +67,11 @@ $.fn.extend
 
     scrollFunction = getScrollFunction()
     settings.element.on "scroll", scrollFunction
-    scrollFunction()
+    setTimeout scrollFunction, 0
+    if settings.wait_for_tick
+      scrollFunction
+    else
+      setTimeout scrollFunction, 0
 
     $(settings.element)
 
