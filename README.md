@@ -1,7 +1,7 @@
 jQuery scrollOver
 ==================
 
-A jQuery plugin to define a scroll positions.
+A jQuery plugin to define a scroll positions and get event on scroll over it.
 
 Defining a scroll positions
 ----------------------
@@ -73,11 +73,6 @@ $.scrollOver({
 * id - id of event
 * debug - debug mode
 * wait_for_tick - wait for the first tick
-
-Download
---------
-
-All ready-to-use files are located in the [`dist/`](dist/) directory.
 
 Examples
 --------
