@@ -13,6 +13,7 @@ $.fn.scrollOver = (options) ->
 		objScrollOver = @
 		offsetSettings = @objSettings.scrollSettings
 		scrollFunction = ->
+			return  if not objScrollOver.objSettings.enable
 			scroll = objScrollOver.getCurrentScroll()
 			objScrollOver.log scroll
 
@@ -72,6 +73,14 @@ $.fn.scrollOver = (options) ->
 	@getCurrentScroll = ->
 		@.objSettings.elem[0].pageYOffset
 
+	@.enable = ->
+		@.objSettings.working = true
+		true
+
+	@.disable = ->
+		@.objSettings.working = false
+		true
+
 	@.addOptions = (options)->
 		obScrollOver = @
 		settings = @.objSettings.scrollSettings
@@ -125,6 +134,7 @@ $.fn.scrollOver = (options) ->
 		touchmove: false
 		scrollSettings: {}
 		offsets: []
+		enable: true
 	@Init()
 
 	@

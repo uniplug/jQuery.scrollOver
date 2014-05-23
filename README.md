@@ -72,6 +72,22 @@ $(document).on("scrollover:over:sometrigger", function(event) {
 });
 ```
 
+
+Disable
+--------
+
+It is possible to disable events:
+
+```javascript
+scrollOver.disable();
+```
+
+And re-enable:
+
+```javascript
+scrollOver.enable();
+```
+
 Settings
 --------
 
