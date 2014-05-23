@@ -67,7 +67,7 @@ $.fn.scrollOver = (options) ->
 		return scrollFunction
 
 	@log = (msg) ->
-		console?.log("ScrollOver: ", msg)  if @objSettings.debug
+		console?.log("scrollOver: ", msg)  if @objSettings.debug
 
 	@getCurrentScroll = ->
 		@.objSettings.elem[0].pageYOffset
@@ -107,6 +107,8 @@ $.fn.scrollOver = (options) ->
 		@.objSettings.elem = $(window)
 		@.objSettings.windowOffset = @.objSettings.elem.scrollTop()
 		@.objSettings.elem.on "scroll", scrollFunction
+		if @.objSettings.wait_for_tick
+			$('body').on 'touchmove', scrollFunction
 
 		if @.objSettings.wait_for_tick
 			scrollFunction
@@ -119,6 +121,7 @@ $.fn.scrollOver = (options) ->
 		throttle: 200
 		wait_for_tick: false
 		windowOffset: false
+		touchmove: false
 		scrollSettings: {}
 		offsets: []
 	@Init()

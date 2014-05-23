@@ -81,13 +81,15 @@ Default settings is:
 $.scrollOver({
     throttle: 200,
     debug: false,
-    wait_for_tick: false
+    wait_for_tick: false,
+    touchmove: false
 });
 ```
 
 * throttle - throttle, 0 for disable
 * debug - debug mode
 * wait_for_tick - wait for the first tick
+* touchmove - listen ``touchmove`` event for mobile devices
 
 Examples
 --------
