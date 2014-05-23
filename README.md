@@ -3,26 +3,41 @@ jQuery scrollOver
 
 A jQuery plugin to define a scroll positions and get event on scroll over it.
 
-Defining a scroll positions
-----------------------
-
-To bind an element with a scroll zone, you can use the ``up`` and ``down`` parameters :
+Creating an object
+------------------
 
 ```javascript
-$.scrollOver({
-    offset: 400,
-    id: "position-400"
+var scrollOver = $.scrollOver();
+```
+
+Defining a scroll positions
+---------------------------
+
+To defining a scroll positions, you can set it om the object creation:
+
+```javascript
+var scrollOver = $.scrollOver({
+    handlers: {
+        "top-2000": 2000,
+        "top-400": 400
+    }
 });
 ```
 
-In this example, the event will be triggered (see below) each time the page scroll through ``offset``.
+or later:
+
+```javascript
+scrollOver.addOptions({sometrigger: 2500});
+```
+
+In this examples, the event will be triggered (see below) each time the page scroll through ``offset``.
 
 Using events
 ------------
 
 Each time the window scroll position reach a defined positions, the events will be triggered.
 
-3 kind of events are triggered :
+4 kind of events are triggered :
 
 * ``scrollover:down``  
   When the scroll position enter move down through the scroll position.
@@ -30,24 +45,30 @@ Each time the window scroll position reach a defined positions, the events will 
   When the scroll position enter move up through the scroll position.
 * ``scrollover:over``  
   Each time you scroll over the scroll position.
+* ``scrollover:over:sometrigger``  
+  Each time you scroll over the scroll position for specific id.
 
 You can use those events as usual :
 
 ```javascript
-$(window).on("scrollover:down", function(event) {
+$(document).on("scrollover:down", function(event) {
     console.log('scrolled over down', event.id);
 });
 
-$(window).on("scrollover:up", function(event) {
+$(document).on("scrollover:up", function(event) {
     console.log('scrolled over up', event.id);
 });
 
-$(window).on("scrollover:over", function(event) {
+$(document).on("scrollover:over", function(event) {
     if ( event.up ) {
         console.log('scrolled over up', event.id);
     } else if ( event.down ) {
         console.log('scrolled over down', event.id);
     }
+});
+
+$(document).on("scrollover:over:sometrigger", function(event) {
+    console.log('scrolled:over:sometrigger', event);
 });
 ```
 
@@ -58,19 +79,13 @@ Default settings is:
 
 ```javascript
 $.scrollOver({
-    element: window,
     throttle: 200,
-    offset: 0,
-    id: false,
     debug: false,
     wait_for_tick: false
 });
 ```
 
-* element - jQuery selector to bind scroll event
 * throttle - throttle, 0 for disable
-* offset - position of trigger from the top of the page
-* id - id of event
 * debug - debug mode
 * wait_for_tick - wait for the first tick
 
