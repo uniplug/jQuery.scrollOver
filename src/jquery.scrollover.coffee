@@ -107,6 +107,7 @@ $.fn.scrollOver = (options) ->
 		@.objSettings.elem = $(window)
 		@.objSettings.windowOffset = @.objSettings.elem.scrollTop()
 		@.objSettings.elem.on "scroll", scrollFunction
+		@.objSettings.elem.on "resize", scrollFunction
 		if @.objSettings.wait_for_tick
 			$('body').on 'touchmove', scrollFunction
 
