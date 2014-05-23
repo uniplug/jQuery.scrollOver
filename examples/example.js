@@ -1,3 +1,5 @@
+var scrollOver;
+
 $(function() {
 
 	$(document).on("scrollover:over", function(event) {
@@ -18,7 +20,7 @@ $(function() {
 		console.log('scrolled:over:sometrigger', event);
 	});
 
-	var scrollOver = $.scrollOver({
+	scrollOver = $.scrollOver({
 		debug: false,
 		throttle: 200,
 		wait_for_tick: true,
@@ -32,4 +34,5 @@ $(function() {
 	// scrollOver.addOptions({"top-400": 400});
 
 	scrollOver.addOptions({sometrigger: 2500});
+
 });
